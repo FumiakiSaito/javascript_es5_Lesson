@@ -293,3 +293,39 @@ function Persion(name) {
         console.log(this.name);
     };
 }
+
+
+/**
+ * クロージャ
+ */
+// 関数の中に関数が書ける。それは自分を囲むスコープにある変数を参照できる
+function func() {
+  var value = 1;
+
+  function innerFunc() {
+    value++;
+  }
+  innerFunc();
+  console.log(value); // 2
+}
+func();
+
+
+// クロージャ実践例：モジュールパターン
+var module = (function() {
+  var count = 0;
+  return {
+    increment: function() {
+      count++;
+    },
+    show: function() {
+      console.log(count);
+    }
+  };
+
+})();
+
+module.show(); // 0
+module.increment();
+module.show(); // 1
+console.log(count); // undefined
